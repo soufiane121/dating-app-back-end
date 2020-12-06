@@ -11,8 +11,7 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
-const mySecretKey =
-	process.env.MY_SECRET_KEY || require("../../config/keys").mySecretKey;
+const mySecretKey = process.env.MY_SECRET_KEY //|| require("../../config/keys").mySecretKey;
 const adminKey = process.env.adminKey; // require("../../config/keys").adminKey;
 const passport = require("passport");
 require("../../config/passport")(passport);

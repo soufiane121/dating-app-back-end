@@ -270,8 +270,8 @@ router.post("/login", async (req, res) => {
 });
 
 router.get("/", async (req,res)=>{
-	let users = await User.find({})
-	res.status(200).json({hi: users})
+	
+	res.status(200).json({hi: "check"})
 });
 
 //delete useraccount from DB

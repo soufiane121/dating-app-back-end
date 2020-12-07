@@ -564,7 +564,6 @@ router.get(
 router.post("/removeImage", async (req, res) => {
 	const resp = deletImage(req.body.user);
 	const { email } = req.body.user;
-	console.log(req.body.user.email);
 
 	MongoClient.connect(DB, { useUnifiedTopology: true }, async (_, db) => {
 		await db
@@ -593,7 +592,6 @@ router.post("/removeImages", async (req, res) => {
 router.post("/removeProfileImage", async (req, res) => {
 	deletImage(req.body.user);
 	const { email } = req.body.user;
-	console.log(email);
 	let update = await User.updateOne({ email: email }, { $set: { image: "" } });
 	let user = await User.findOne({ email: email });
 	if (update.n > 0) {
@@ -604,7 +602,6 @@ router.post("/removeProfileImage", async (req, res) => {
 router.post("/accepteSelfie", (req, res) => {
 	const resp = deletImage(req.body.user);
 	const { email } = req.body.user;
-	console.log(req.body.user.email);
 
 	MongoClient.connect(DB, { useUnifiedTopology: true }, async (_, db) => {
 		await db
@@ -1085,7 +1082,6 @@ const checkIdBadge = async (senderEmail, recieverEmail, chatId) => {
 			email: recieverEmail,
 		});
 		let checkAnswer = checkIncludesChatId(user, chatId);
-		console.log(checkAnswer);
 		if (checkAnswer === false || checkAnswer === undefined) {
 			const result = await User.updateOne(
 				{
@@ -1174,6 +1170,9 @@ const autoLoginAndMessages = async (data) => {
 		newUser.height = user.height;
 		newUser.canSwip = user.canSwip;
 		newUser.prevSwip = user.prevSwip;
+		newUser.visitedMe = user.visitedMe;
+		newUser.likedMe = user.likedMe;
+		
 
 		newUser.created_at = user.created_at;
 

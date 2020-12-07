@@ -86,6 +86,8 @@ router.get(
 	"/autologin",
 	passport.authenticate("jwt", { session: false }),
 	(req, res) => {
+		console.log(req);
+		console.log(req);
 		const token = jwt.sign(req.user.id, mySecretKey);
 		const newUser = {};
 		newUser.id = "Bearer " + token;
@@ -268,6 +270,7 @@ router.post("/login", async (req, res) => {
 });
 
 router.get("/", (req,res)=>{
+	console.log(req);
 	res.status(200).json({hi: "hello"})
 });
 

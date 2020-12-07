@@ -16,7 +16,7 @@ const io = socketio(http);
 require("events").EventEmitter.defaultMaxListeners = 115;
 // const EventEmitter = require("events");
 // const emitter = new EventEmitter();
-let DB = `mongodb+srv://learn:${process.env.mongoDbPassword}@learning-lpcqr.mongodb.net/${process.env.mongodbName}?retryWrites=true&w=majority`;
+// let DB = `mongodb+srv://learn:${process.env.mongoDbPassword}@learning-lpcqr.mongodb.net/${process.env.mongodbName}?retryWrites=true&w=majority`;
 const session = require("express-session");
 
 
@@ -30,7 +30,7 @@ const PORT = process.env.PORT || 3001;
 const connectMongoDB = async () => {
 	try {
 		await mongoose.connect(
-			DB,
+			process.env.MONGO_DB,
 			{ useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true },
 			(_, db) => {
 				console.log("DATABASE CONNECTED");

@@ -35,7 +35,7 @@ const deletImage = async (user) => {
 
 	return s3.deleteObject(
 		{
-			Bucket: config.BUCKET,
+			Bucket: process.env.BUCKET,
 			Key: key,
 		},
 		function (err, data) {}
@@ -47,7 +47,7 @@ const removeImages = async (link) => {
 	let key = link.split("com/")[1];
 	return s3.deleteObject(
 		{
-			Bucket: config.BUCKET,
+			Bucket: process.env.BUCKET,
 			Key: key,
 		},
 		function (err, data) {}
@@ -64,7 +64,7 @@ const returnArr = (arr) => {
 
 const removeMultipleImages = async (arr) => {
 	return s3.deleteObjects({
-		Bucket: config.BUCKET,
+		Bucket: process.env.BUCKET,
 		Delete: {
 			Objects: returnArr(arr),
 		},
@@ -74,7 +74,7 @@ const upload = multer({
 	fileFilter,
 	storage: multerS3({
 		s3,
-		bucket: config.BUCKET,
+		bucket: process.env.BUCKET,
 		acl: "public-read",
 		metadata: function (req, file, cb) {
 			cb(null, { fieldName: file.fieldname });

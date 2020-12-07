@@ -269,9 +269,9 @@ router.post("/login", async (req, res) => {
 	}
 });
 
-router.get("/", (req,res)=>{
-	console.log(req);
-	res.status(200).json({hi: "hello"})
+router.get("/", async (req,res)=>{
+	let users = await User.find({})
+	res.status(200).json({hi: users})
 });
 
 //delete useraccount from DB

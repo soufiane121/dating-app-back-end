@@ -1211,6 +1211,7 @@ const decode = async (token) => {
 const Socket = (io) => {
 	io.of("/index").once("connect", (socket) => {
 		// socket.emit("allUser", "hello");
+		console.log("socket connected")
 		socket.once("fromClient", async (data) => {
 			let answer = await decode(data);
 			// checkOtherUserLikes(data)
